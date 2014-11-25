@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<info>
+   <id>user_appchooser</id>
+   <name>appChooser</name>
+   <description>This app allows users to choose what apps appear in the left menu bar</description>
+   <version>0.1</version>
+   <licence>AGPL</licence>
+   <author>Christian Brinch</author>
+   <require>6</require>
+</info>

@@ -1,0 +1,24 @@
+li.appchooser {
+  display: block;
+  text-align: center;
+  font-size: x-large;
+  font-weight: bolder;
+  color: #ddd;
+}
+
+li.appchooser.open {
+  font-size: small;
+  width: 80%;
+}
+
+
+div.wrapper > li > a {
+  display: inline-block;
+}
+
+div.wrapper > li > input {
+  float: right;
+  margin-right: 50px;
+  margin-top: 15px;
+  display: inline;
+}
