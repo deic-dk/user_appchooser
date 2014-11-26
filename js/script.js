@@ -22,7 +22,7 @@
 $(document).ready(
     $(function(){    
 
-      var appIDs = $('div.wrapper li').not(':first').map( function() {
+      var appIDs = $('div.wrapper li:not(:first-child)').map( function() {
         return $(this).data('id');
       }).get();
 
@@ -32,33 +32,35 @@ $(document).ready(
         data: { appIDs: appIDs }, 
         type: "POST",                                                                
         success: function(result) {                                                  
-          var config = $.parseJSON(result); 
-          $.each(config, function(app, value) {
-            $('div.wrapper li[data-id='+app+']').append('<input type="checkbox" name="'+app+'" value="1">');
-            $('div.wrapper li[data-id='+app+']').css('display','block');
-            if(value==0){
-              $('div.wrapper li[data-id='+app+']').hide();
-            }
-            if(value==1){
-              $('div.wrapper li[data-id='+app+'] input').hide();
-              $('div.wrapper li[data-id='+app+'] input').prop('checked', 1);
-            }
-          });
-        }                                                                           
+          if(!result.status){
+            var config = $.parseJSON(result); 
+            $.each(config, function(app, value) {
+              $('div.wrapper li[data-id='+app+']').append('<input type="checkbox" name="'+app+'" value="1">');
+              $('div.wrapper li[data-id='+app+']').css('display','block');
+              if(value==0){
+                $('div.wrapper li[data-id='+app+']').hide();
+              }
+              if(value==1){
+                $('div.wrapper li[data-id='+app+'] input').hide();
+                $('div.wrapper li[data-id='+app+'] input').prop('checked', 1);
+              }
+            });
+          }
+        }
       });   
 
-      $('div.wrapper').append('<li class=\'appchooser\' style="display:block">+</li>');
+      $('div.wrapper').append('<li class=\'appchooser\' style="display:block"><div class="plus">+</div><span>App management</span></li>');
 
       $('li.appchooser').on('click', function() {
         if($(this).hasClass('open')){
-          $('div.wrapper li input:not(:checked)').parent('li').hide();
+          $('div.wrapper li input:not(:checked)').parent('li').hide('slow','linear');
           $('div.wrapper li input:checked').hide();
-          $('div.wrapper li.appchooser').html('+').removeClass('open');
+          $('div.wrapper li.appchooser').html('<div class="plus">+</div><span>App management</span>').removeClass('open');
 
         } else {
-          $('div.wrapper li').not(':first').not('.appchooser').show();
+          $('div.wrapper li').not(':first').not('.appchooser').show('slow','linear');
           $('div.wrapper li input').not('.appchooser').show();
-          $('div.wrapper li.appchooser').html('<div class="button">Save settings</div>').addClass('open');
+          $('div.wrapper li.appchooser').html('<div class="button">Ok</div>').addClass('open');
         }
       });      
 

@@ -26,7 +26,7 @@ OCP\JSON::checkAppEnabled('user_appchooser');
 
 $config = new \OCA\user_appchooser\config();
 
-$appIDs = $_POST['appIDs'];
-
-echo json_encode($config->getPrefs($appIDs));
-
+if(isset($_POST['appIDs'])){
+  $appIDs = $_POST['appIDs'];
+  echo json_encode($config->getPrefs($appIDs));
+} 

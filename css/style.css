@@ -1,12 +1,25 @@
-li.appchooser {
-  display: block;
-  text-align: center;
+li.appchooser .plus {
   font-size: x-large;
   font-weight: bolder;
-  color: #ddd;
+  color: #D0CE54;
+  float: left;
+  margin-right: 12px;
+  margin-left: 4px;
+}
+
+li.appchooser {
+  cursor: pointer;
+  margin-top:12px;
+  opacity: 0.8;
+}
+
+li.appchooser div,
+li.appchooser span {
+  cursor: pointer;
 }
 
 li.appchooser.open {
+  text-align: center;
   font-size: small;
   width: 80%;
 }

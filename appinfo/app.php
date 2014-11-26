@@ -23,9 +23,9 @@
 OCP\App::checkAppEnabled('user_appchooser');
 
 \OCP\App::register(array(
-    'id' => 'user_appchooser',
-    'order' => 990,
-    'name' => 'user_appchooser'
+    'id'    => 'user_appchooser',
+    'name'  => 'user_appchooser',
+    'order' => 90
 ));
 
 OC::$CLASSPATH['OCA\user_appchooser\config']   = 'apps/user_appchooser/lib/appchooserconfig.php';
