@@ -22,10 +22,13 @@
 
 OCP\App::checkAppEnabled('user_appchooser');
 
-\OCP\App::register(array(
+\OCP\App::addNavigationEntry(array(
     'id'    => 'user_appchooser',
     'name'  => 'user_appchooser',
-    'order' => 90
+    'order' => 990,
+    "href" => 'javascript: void(0)',
+    'icon' => \OCP\Util::imagePath('user_appchooser', 'nav-icon.png'),
+    'name' => 'App management'
 ));
 
 OC::$CLASSPATH['OCA\user_appchooser\config']   = 'apps/user_appchooser/lib/appchooserconfig.php';

@@ -22,9 +22,12 @@
 $(document).ready(
     $(function(){    
 
-      var appIDs = $('div.wrapper li:not(:first-child)').map( function() {
+      var appIDs = $('div.wrapper li').map( function() {
         return $(this).data('id');
       }).get();
+
+      appIDs.splice(appIDs.indexOf('files_index'),1);
+      appIDs.splice(appIDs.indexOf('user_appchoser'),1);
 
       $.ajax({                                                                       
         url: OC.filePath('user_appchooser', 'ajax', 'config.php'),                    
@@ -45,24 +48,24 @@ $(document).ready(
                 $('div.wrapper li[data-id='+app+'] input').prop('checked', 1);
               }
             });
+            $('div.wrapper li[data-id="user_appchooser"]').css('display','block'); 
           }
         }
       });   
 
-      $('div.wrapper').append('<li class=\'appchooser\' style="display:block"><div class="plus">+</div><span>App management</span></li>');
-
-      $('li.appchooser').on('click', function() {
-        if($(this).hasClass('open')){
+      $('li[data-id="user_appchooser"]').live('click', function() {
+          $('div.wrapper li').not(':first').not(':last').show('slow','linear');
+          $('div.wrapper li input').show();
+          $('div.wrapper li[data-id="user_appchooser"]').hide();
+          $('div.wrapper').append('<div class="button">Ok</div>')
+      });      
+     
+      $('div.wrapper div.button').live('click', function() {
           $('div.wrapper li input:not(:checked)').parent('li').hide('slow','linear');
           $('div.wrapper li input:checked').hide();
-          $('div.wrapper li.appchooser').html('<div class="plus">+</div><span>App management</span>').removeClass('open');
-
-        } else {
-          $('div.wrapper li').not(':first').not('.appchooser').show('slow','linear');
-          $('div.wrapper li input').not('.appchooser').show();
-          $('div.wrapper li.appchooser').html('<div class="button">Ok</div>').addClass('open');
-        }
-      });      
+          $('div.wrapper li[data-id="user_appchooser"]').show();
+          $('div.wrapper div.button').remove();
+      }); 
 
       $('div.wrapper li input').live('change', function() {
         if($(this).prop('checked')){
@@ -77,12 +80,5 @@ $(document).ready(
           type: "POST",                                                                
         });         
       });
-
-
-
-
-
-
-
     })
 ) 

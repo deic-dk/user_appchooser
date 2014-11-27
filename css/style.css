@@ -1,29 +1,12 @@
-li.appchooser .plus {
-  font-size: x-large;
-  font-weight: bolder;
-  color: #D0CE54;
-  float: left;
-  margin-right: 12px;
-  margin-left: 4px;
+#navigation a span {
+  width: 100px;
 }
 
-li.appchooser {
-  cursor: pointer;
-  margin-top:12px;
-  opacity: 0.8;
-}
-
-li.appchooser div,
-li.appchooser span {
-  cursor: pointer;
-}
-
-li.appchooser.open {
+div.wrapper > div.button {
   text-align: center;
   font-size: small;
   width: 80%;
 }
-
 
 div.wrapper > li > a {
   display: inline-block;
